@@ -1,0 +1,32 @@
+sensor.illumination_7811dcb203d8:
+  name: Aquara hub light sensor
+  platform: xiaomi_aqara
+  unique_id: illumination7811dcb203d8
+binary_sensor.wall_switch_right_158d000183f051:
+  name: Wireless switch right
+  platform: xiaomi_aqara
+  unique_id: channel_1158d000183f051
+binary_sensor.wall_switch_left_158d000183f051:
+  name: Wireless switch left
+  platform: xiaomi_aqara
+  unique_id: channel_0158d000183f051
+binary_sensor.wall_switch_both_158d000183f051:
+  name: Wireless switch booth
+  platform: xiaomi_aqara
+  unique_id: dual_channel158d000183f051
+switch.wall_switch_left_158d00014a5529:
+  name: Room left switch
+  platform: xiaomi_aqara
+  unique_id: channel_0158d00014a5529
+switch.wall_switch_right_158d00014a5529:
+  name: Room right switch
+  platform: xiaomi_aqara
+  unique_id: channel_1158d00014a5529
+switch.wall_switch_158d00014a9c3c:
+  name: Kitchen switch
+  platform: xiaomi_aqara
+  unique_id: channel_0158d00014a9c3c
+light.gateway_light_7811dcb203d8:
+  name: Aquara hub light
+  platform: xiaomi_aqara
+  unique_id: rgb7811dcb203d8

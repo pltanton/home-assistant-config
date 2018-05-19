@@ -1,0 +1,7 @@
+turn_off_lights:
+  alias: Turn off all lights
+  sequence:
+  - service: light.turn_off
+  - service: switch.turn_off 
+    data:
+      entity_id: switch.wall_switch_left_158d00014a5529

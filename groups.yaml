@@ -1,0 +1,40 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+  - vacuum.xiaomi_vacuum_cleaner
+  - device_tracker.anton_phone
+  - device_tracker.julsa_phone
+  - scene.cinema
+  - script.turn_off_lights
+  
+rooms_view:
+  name: Rooms
+  view: yes
+  entities:
+  - group.bedroom
+  - group.kitchen
+  - group.hallway
+
+Bedroom:
+  entities:
+  - switch.wall_switch_left_158d00014a5529
+  - light.philips_ceiling_room
+  - vacuum.xiaomi_vacuum_cleaner
+
+Kitchen:
+  entities:
+  - light.philips_ceiling_kitchen
+
+Hallway:
+  entities:
+  - light.yeelight_white_f0b4290f2bf4
+  - light.gateway_light_7811dcb203d8
+
+System:
+  view: yes
+  entities:
+  - group.all_automations
+  - group.all_sensors
+  - group.all_scripts
+  - group.all_switches
