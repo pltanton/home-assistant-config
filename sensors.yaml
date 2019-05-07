@@ -1,0 +1,63 @@
+- platform: mqtt
+  state_topic: /atmosphere/co2
+  name: CO2
+  unit_of_measurement: PPM
+  icon: "mdi:periodic-table-co2"
+
+- platform: mqtt
+  state_topic: /atmosphere/light
+  name: Light room
+  unit_of_measurement: lux
+  icon: "mdi:weather-sunny"
+
+- platform: mqtt
+  state_topic: /atmosphere/temp
+  name: Temperature room
+  unit_of_measurement: '°'
+  icon: "mdi:temperature-celsius"
+
+- platform: mqtt
+  state_topic: /atmosphere/humi
+  name: Humidity room
+  unit_of_measurement: '%'
+  icon_template: mdi:water-percent
+
+- platform: template
+  sensors:
+    humidifier_water_level:
+      icon_template: mdi:waves
+      friendly_name: Humidifier water level
+      unit_of_measurement: '%'
+      value_template: "{{ (state_attr('fan.xiaomi_miio_device', 'depth') / 120 * 100)|round }}"
+    humidifier_humidity_raw:
+      icon_template: mdi:water-percent
+      friendly_name: Humidifier Humidity raw
+      unit_of_measurement: '%'
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'humidity') }}"
+    humidifier_temperature_raw:
+      icon_template: mdi:temperature-celsius
+      unit_of_measurement: '°'
+      friendly_name: Humidifier Temperature raw
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'temperature') }}"
+
+- platform: filter
+  name: Humidifier Humidity
+  entity_id: sensor.humidifier_humidity_raw
+  filters:
+  - filter: outlier
+    window_size: 4
+    radius: 4.0
+  - filter: lowpass
+    time_constant: 10
+    precision: 2
+
+- platform: filter
+  name: Humidifier Temperature
+  entity_id: sensor.humidifier_temperature_raw
+  filters:
+  - filter: outlier
+    window_size: 4
+    radius: 4.0
+  - filter: lowpass
+    time_constant: 10
+    precision: 2

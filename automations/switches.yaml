@@ -1,0 +1,41 @@
+- alias: Toggle bed light
+  trigger:
+  - event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000183f051
+    event_type: click
+    platform: event
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.yeelight_color2_04cf8c773783
+
+- alias: Toggle room light
+  trigger:
+  - event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000183f051
+    event_type: click
+    platform: event
+  action:
+  - service: light.toggle
+    data:
+      entity_id: light.room_light
+
+- alias: Switch philips room scene
+  trigger:
+  - event_data:
+      entity_id: binary_sensor.wall_switch_both_158d000183f051
+    event_type: click
+    platform: event
+  action:
+    service: script.switch_philips_room_scene
+
+- alias: Fix kitchen switch
+  trigger:
+  - event_data:
+      entity_id: binary_sensor.wall_switch_both_158d000183f051
+    event_type: click
+    platform: event
+  action:
+    service: script.switch_philips_room_scene
+
+# vim: ts=2 sw=2:

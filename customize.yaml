@@ -1,2 +1,29 @@
 light.yeelight_white_f0b4290f2bf4:
-  friendly_name: Front door bulb
+  friendly_name: Toilet light
+  icon: mdi:toilet
+light.yeelight_color2_04cf8c773783:
+  friendly_name: Bed light
+  icon: mdi:bed-empty
+light.yeelight_color2_04cf8c7b7117:
+  friendly_name: Front door light
+  icon: mdi:home
+switches.robot:
+  friendly_name: Robot cleaner
+  aliases:
+  - robot
+  - robo
+  - pidor
+light.kitchen_light:
+  icon: mdi:silverware
+scene.cinema:
+  icon: mdi:filmstrip
+scene.dim_bedroom:
+  icon: mdi:brightness-4
+scene.bright_bedroom:
+  icon: mdi:brightness-7
+light.room_light:
+  friendly_name: Main light
+switch.room_camera_switch:
+  icon: mdi:video
+light.gateway_light_7811dcb203d8:
+  friendly_name: Gateway light

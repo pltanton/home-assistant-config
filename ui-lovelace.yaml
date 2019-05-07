@@ -1,0 +1,74 @@
+title: My Awesome Home
+views:
+  # View tab title.
+- title: Example
+  panel: false
+  # Makes the first card fill the view
+  cards:
+  - type: picture-glance
+    title: Room
+    camera_image: camera.room_camera_ffmpeg
+    entities:
+    - vacuum.xiaomi_vacuum_cleaner
+
+    - light.yeelight_color2_04cf8c773783
+    - light.room_light
+    - switch.room_camera_switch
+
+  - type: entities
+    show_header_toggle: false
+    title: Room
+    entities:
+    - fan.xiaomi_miio_device
+    - light.yeelight_color2_04cf8c773783
+    - light.room_light
+    - vacuum.xiaomi_vacuum_cleaner
+
+  - type: entities
+    show_header_toggle: false
+    title: Other
+    entities:
+    - light.kitchen_light
+    - light.yeelight_white_f0b4290f2bf4
+
+    - light.gateway_light_7811dcb203d8
+    - light.yeelight_color2_04cf8c7b7117
+
+    - fan.xiaomi_miio_device
+
+  - type: glance
+    title: Sensors
+    entities:
+    - entity: sensor.temperature_room
+    - entity: sensor.humidity_room
+    - entity: sensor.co2
+
+  - type: glance
+    title: Switches
+    entities:
+    - entity: switch.wall_switch_left_158d00014a5529
+      name: Bed
+      tap_action: toggle
+    - entity: switch.wall_switch_right_158d00014a5529
+      name: Room
+      tap_action: toggle
+    - entity: switch.wall_switch_158d00014a9c3c
+      name: Kitcehn
+      tap_action: toggle
+    - entity: switch.room_camera_switch
+      name: Room Camera
+      tap_action: toggle
+
+  - type: glance
+    title: Scenes
+    entities:
+    - entity: scene.bright_bedroom
+      tap_action: call-service
+      service: scene.turn_on
+    - entity: scene.dim_bedroom
+      tap_action: call-service
+      service: scene.turn_on
+    - entity: scene.cinema
+      tap_action: call-service
+      service: scene.turn_on
+

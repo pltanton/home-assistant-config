@@ -1,12 +1,36 @@
 - name: Cinema
   entities:
-    light.yeelight_white_f0b4290f2bf4:
+    light.kitchen_light:
       state: off
-    switch.wall_switch_left_158d00014a5529:
+    light.yeelight_color2_04cf8c7b7117:
       state: off
-    light.philips_ceiling_kitchen:
-      state: off
-    light.philips_ceiling_room:
+    light.yeelight_color2_04cf8c773783:
       state: on
       brightness: 3
-      color_temp: 370
+      color_temp: 285
+    light.room_light:
+      state: on
+      brightness: 3
+      color_temp: 320
+
+- name: Dim bedroom
+  entities:
+    light.yeelight_color2_04cf8c773783:
+      state: on
+      brightness: 30 
+      color_temp: 320
+    light.room_light:
+      state: on
+      brightness: 55
+      color_temp: 320
+
+- name: Bright bedroom
+  entities:
+    light.yeelight_color2_04cf8c773783:
+      state: on
+      brightness: 255
+      color_temp: 320
+    light.room_light:
+      state: on
+      brightness: 255
+      color_temp: 320

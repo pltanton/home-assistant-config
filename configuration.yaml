@@ -15,20 +15,36 @@ homeassistant:
   customize_glob:
     "group.all_*":
       hidden: false
+  auth_providers:
+  - type: homeassistant
+  - type: legacy_api_password
+    api_password: !secret http_password
+
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.device_tracker: critical
+    homeassistant.components.camera: critical
+
+lovelace:
+  mode: yaml
 
 # Enables the frontend
 frontend:
+  themes: !include_dir_merge_named themes 
+    
 
 prometheus:
+  include:
+    domains:
+      - sensor
 
 # Enables configuration UI
 config:
 
 http:
-  # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: home.kaliwe.ru:8123
+  base_url: https://home.kaliwe.ru
   trusted_networks: [ 192.168.30.0/24 ]
 
 # Checks for available updates
@@ -64,20 +80,17 @@ zone:
 # Track the sun
 sun:
 
-# Weather prediction
-sensor:
-  - platform: yr
-
 # Text to speech
 tts:
-  - platform: google
+  - platform: yandextts
+    api_key: !secret yandex_tts_token
+    language: ru-RU
+    voice: oksana
 
-# Cloud
-cloud:
-
+sensor: !include sensors.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
+automation: !include_dir_merge_list automations
+script: !include_dir_merge_named scripts
 scene: !include scenes.yaml
 
 xiaomi_aqara:
@@ -87,15 +100,21 @@ xiaomi_aqara:
     
 light:
   - platform: xiaomi_miio
-    name: Philips ceiling room
+    name: Room light
     host: 192.168.30.2
     token: !secret philips_room_token
     model: philips.light.ceiling
   - platform: xiaomi_miio
-    name: Philips ceiling kitchen
+    name: Kitchen light
     host: 192.168.30.3
     token: !secret philips_kitchen_token
     model: philips.light.ceiling
+  - platform: group
+    name: Room ligts
+    entities:
+    - light.room_light
+    - light.yeelight_color2_04cf8c773783
+
 
 vacuum:
   - platform: xiaomi_miio
@@ -103,14 +122,86 @@ vacuum:
     token: !secret vacuum_token
 
 device_tracker:
-  - platform: owntracks_http
-  - platform: mikrotik
+  - platform: owntracks
+  - platform: snmp
     host: 192.168.88.1
-    interval_seconds: 3 
-    username: admin
-    password: !secret mikrotik_password
-    new_device_defaults:
-      track_new_devices: false
-      hide_if_away: false
+    community: public
+    baseoid: 1.3.6.1.4.1.14988.1.1.1.2.1.1
+# - platform: mikrotik
+#    host: 192.168.88.1
+#    interval_seconds: 3 
+#    username: admin
+#    method: wireless
+#    password: !secret mikrotik_password
+#    new_device_defaults:
+#      track_new_devices: false
+#      hide_if_away: false
 
+google_assistant:
+  project_id: hass-c9900
+  api_key: !secret google_api_key
+  exposed_domains:
+    - light
+    - scene
+
+switch:
+- platform: template
+  switches:
+    robot:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'on') }}"
+      turn_on:
+        service: vacuum.turn_on
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      turn_off:
+        service: vacuum.xiaomi_vacuum_cleaner
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+- platform: mqtt
+  name: "Room camera switch"
+  state_topic: "stat/sonoff_camera_1/POWER"
+  command_topic: "cmnd/sonoff_camera_1/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+mqtt:
+  broker: 127.0.0.1
+  username: hass
+  password: !secret mqtt
+
+notify:
+  - platform: nfandroidtv
+    name: Xiaomi TV
+    host: 192.168.30.7
+
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_bot_home_channel
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_key
+    allowed_chat_ids:
+      - !secret telegram_bot_home_channel
+
+fan:
+  - platform: xiaomi_miio
+    host: 192.168.30.9
+    token: !secret humidifier_token
+
+system_health:
+stream:
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+camera:
+  - platform: local_file
+    name: room_camera_disabled
+    file_path: room_camera_disabled.png
+  - platform: ffmpeg
+    name: room_camera_ffmpeg
+    input: -rtsp_transport tcp -i rtsp://192.168.30.7/ch0_0.h264
 

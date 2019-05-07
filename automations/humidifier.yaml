@@ -1,0 +1,10 @@
+- alias: turn humidifier off on high humidity
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.humidity_room 
+    above: 42
+    for:
+      minutes: 10
+  action:
+    service: fan.turn_off
+    entity_id: fan.xiaomi_miio_device

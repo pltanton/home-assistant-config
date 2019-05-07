@@ -1,0 +1,14 @@
+- alias: Fix philips turning on
+  trigger:
+  - platform: state
+    entity_id:
+      - light.room_light
+      - light.kitchen_light
+    from: 'off'
+    to: 'on'
+  action:
+  - service: light.xiaomi_miio_set_scene
+    data_template:
+      entity_id: "{{ trigger.entity_id }}"
+      scene: 1
+

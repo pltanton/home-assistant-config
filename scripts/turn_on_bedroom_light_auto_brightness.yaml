@@ -1,0 +1,9 @@
+turn_on_bedroom_light_auto_brightness:
+  alias: Turn on bedroom lights with automatic brightess
+  sequence:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >-
+        {% if states.sensor.light_room.state|float < 50 %}
+          scene.bright_bedroom
+        {% endif %}

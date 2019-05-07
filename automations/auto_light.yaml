@@ -1,0 +1,26 @@
+- alias: Turn on room light by sensor
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.light_room 
+    below: 60
+    for:
+      minutes: 15
+  action:
+  - service: scene.turn_on
+    data:
+      entity_id: scene.bright_bedroom
+
+- alias: Turn off light by sensor
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.light_room 
+    above: 61
+    for:
+      minutes: 5 
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.room_lights
+  - service: light.turn_off
+    data:
+      entity_id: light.kitchen_light

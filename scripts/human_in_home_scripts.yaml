@@ -1,0 +1,26 @@
+human_arrive:
+  alias: Human arrive to home
+  sequence:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >-
+        {% if states.sensor.light_room.state|float < 50 %}
+          scene.bright_bedroom
+        {% endif %}
+  - service: switch.turn_off
+    entity_id:
+    - switch.room_camera_switch
+  - service: light.turn_of
+    entity_id:
+    - light.gateway_light_7811dcb203d8_2
+
+human_leave:
+  alias: Human leave home
+  sequence:
+  - service: light.turn_off
+  - service: switch.turn_on
+    entity_id:
+    - switch.room_camera_switch
+  - service: light.turn_on
+    entity_id:
+    - light.gateway_light_7811dcb203d8_2

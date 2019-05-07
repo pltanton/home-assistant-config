@@ -1,40 +1,69 @@
 default_view:
   view: yes
-  icon: mdi:home
+  name: Home
   entities:
-  - vacuum.xiaomi_vacuum_cleaner
-  - device_tracker.anton_phone
-  - device_tracker.julsa_phone
-  - scene.cinema
-  - script.turn_off_lights
-  
-rooms_view:
-  name: Rooms
+    - group.bedroom_lights
+    - group.kitchen_lights
+    - group.hallaway_lights
+    - group.toilet_lights
+    - vacuum.xiaomi_vacuum_cleaner
+
+    - scene.cinema
+    - scene.dim_bedroom
+    - scene.bright_bedroom
+
+    - media_player.mitv4c_3
+
+    - script.turn_off_lights
+    - group.all_fans
+
+    - media_player.bedroom_speaker
+
+automations_view:
   view: yes
+  name: Automations
   entities:
-  - group.bedroom
-  - group.kitchen
-  - group.hallway
+    - group.all_scripts
+    - group.all_automations
 
-Bedroom:
+camera_view:
+  view: yes
+  name: Cameras
   entities:
-  - switch.wall_switch_left_158d00014a5529
-  - light.philips_ceiling_room
-  - vacuum.xiaomi_vacuum_cleaner
+    - camera.room_camera
+    - camera.second_camera
 
-Kitchen:
+service_view:
+  view: yes
+  name: Service
   entities:
-  - light.philips_ceiling_kitchen
+    - group.all_switches
+  
+bedroom_lights:
+  name: Bedroom
+  entities:
+  - light.room_light
+  - light.yeelight_color2_04cf8c773783
 
-Hallway:
+kitchen_lights:
+  name: Kitchen
+  entities:
+  - light.kitchen_light
+
+toilet_lights:
+  name: Toilet
   entities:
   - light.yeelight_white_f0b4290f2bf4
-  - light.gateway_light_7811dcb203d8
 
-System:
-  view: yes
+hallaway_lights:
+  name: Hallaway
   entities:
-  - group.all_automations
-  - group.all_sensors
-  - group.all_scripts
-  - group.all_switches
+  - light.gateway_light_7811dcb203d8_2
+  - light.yeelight_color2_04cf8c7b7117
+
+human_devices:
+  name: Human devices
+  entities:
+    - device_tracker.anton_phone
+    - device_tracker.julsa_phone
+    - device_tracker.disa_phone
