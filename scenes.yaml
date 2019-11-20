@@ -2,9 +2,9 @@
   entities:
     light.kitchen_light:
       state: off
-    light.yeelight_color2_04cf8c7b7117:
+    light.front_door_light:
       state: off
-    light.yeelight_color2_04cf8c773783:
+    light.bed_light:
       state: on
       brightness: 3
       color_temp: 285
@@ -15,7 +15,7 @@
 
 - name: Dim bedroom
   entities:
-    light.yeelight_color2_04cf8c773783:
+    light.bed_light:
       state: on
       brightness: 30 
       color_temp: 320
@@ -23,10 +23,12 @@
       state: on
       brightness: 55
       color_temp: 320
+    light.front_door_light:
+      state: off
 
 - name: Bright bedroom
   entities:
-    light.yeelight_color2_04cf8c773783:
+    light.bed_light:
       state: on
       brightness: 255
       color_temp: 320
@@ -34,3 +36,7 @@
       state: on
       brightness: 255
       color_temp: 320
+    light.front_door_light:
+      brightness: 255
+      color_temp: 320
+      state: on

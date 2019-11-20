@@ -1,0 +1,7 @@
+devices:
+  192.168.30.10:
+    name: Front Door Light
+    model: color2
+  192.168.30.11:
+    name: Bed Light
+    model: color2

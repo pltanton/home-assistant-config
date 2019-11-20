@@ -78,15 +78,15 @@ thinkpadedgee330:
   picture:
   track: true
 
-anton_phone:
+anton_phone_router:
   hide_if_away: false
   icon:
   mac: 48:2C:A0:76:F1:4C
-  name: Anton's phone
+  name: Anton's phone by router
   picture:
   track: true
 
-julsa_phone:
+julsa_phone_router:
   hide_if_away: false
   icon:
   mac: 34:12:F9:43:73:52 
@@ -158,13 +158,6 @@ nixos_2:
   picture:
   track: true
 
-anton_anton_phone:
-  hide_if_away: false
-  icon:
-  mac:
-  name: anton
-  picture:
-  track: true
 
 b0e235dbc794:
   hide_if_away: false
@@ -430,7 +423,7 @@ f4f5dbf6b0fd:
   picture:
   track: true
 
-disa_phone:
+disa_phone_router:
   hide_if_away: false
   icon:
   mac: 14:D1:69:3B:0E:7F
@@ -443,5 +436,101 @@ disa_phone:
   icon:
   mac: 7C:49:EB:D4:38:03
   name: 7c 49 eb d4 38 03
+  picture:
+  track: true
+
+24_1b_7a_d1_c1_08:
+  hide_if_away: false
+  icon:
+  mac: 24:1B:7A:D1:C1:08
+  name: 24 1b 7a d1 c1 08
+  picture:
+  track: true
+
+a0_57_e3_34_9c_a9:
+  hide_if_away: false
+  icon:
+  mac: A0:57:E3:34:9C:A9
+  name: a0 57 e3 34 9c a9
+  picture:
+  track: true
+
+a4_93_3f_37_50_59:
+  hide_if_away: false
+  icon:
+  mac: A4:93:3F:37:50:59
+  name: a4 93 3f 37 50 59
+  picture:
+  track: true
+
+10_98_c3_80_0f_9b:
+  hide_if_away: false
+  icon:
+  mac: 10:98:C3:80:0F:9B
+  name: 10 98 c3 80 0f 9b
+  picture:
+  track: true
+
+84_0d_8e_8e_32_a9:
+  hide_if_away: false
+  icon:
+  mac: 84:0D:8E:8E:32:A9
+  name: 84 0d 8e 8e 32 a9
+  picture:
+  track: true
+
+88_b1_11_47_ab_d0:
+  hide_if_away: false
+  icon:
+  mac: 88:B1:11:47:AB:D0
+  name: 88 b1 11 47 ab d0
+  picture:
+  track: true
+
+dc_4f_22_63_be_b5:
+  hide_if_away: false
+  icon:
+  mac: DC:4F:22:63:BE:B5
+  name: dc 4f 22 63 be b5
+  picture:
+  track: true
+
+20_47_da_c4_b7_f0:
+  hide_if_away: false
+  icon:
+  mac: 20:47:DA:C4:B7:F0
+  name: 20 47 da c4 b7 f0
+  picture:
+  track: true
+
+b8_ee_65_5e_39_83:
+  hide_if_away: false
+  icon:
+  mac: B8:EE:65:5E:39:83
+  name: b8 ee 65 5e 39 83
+  picture:
+  track: true
+
+44_5e_cd_90_bb_7e:
+  hide_if_away: false
+  icon:
+  mac: 44:5E:CD:90:BB:7E
+  name: 44 5e cd 90 bb 7e
+  picture:
+  track: true
+
+d4_38_9c_74_a4_6e:
+  hide_if_away: false
+  icon:
+  mac: D4:38:9C:74:A4:6E
+  name: d4 38 9c 74 a4 6e
+  picture:
+  track: true
+
+90_2b_d2_49_ce_51:
+  hide_if_away: false
+  icon:
+  mac: 90:2B:D2:49:CE:51
+  name: 90 2b d2 49 ce 51
   picture:
   track: true

@@ -43,7 +43,7 @@ bedroom_lights:
   name: Bedroom
   entities:
   - light.room_light
-  - light.yeelight_color2_04cf8c773783
+  - light.bed_light
 
 kitchen_lights:
   name: Kitchen
@@ -59,11 +59,10 @@ hallaway_lights:
   name: Hallaway
   entities:
   - light.gateway_light_7811dcb203d8_2
-  - light.yeelight_color2_04cf8c7b7117
+  - light.front_door_light
 
-human_devices:
-  name: Human devices
+privileged_humans:
+  name: Priviliged humans
   entities:
-    - device_tracker.anton_phone
-    - device_tracker.julsa_phone
-    - device_tracker.disa_phone
+    - person.anton
+    - person.julia

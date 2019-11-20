@@ -1,5 +1,8 @@
 .storage
 .cloud
+adbkey
+
+__pycache__/
 
 .uuid
 secrets.yaml

@@ -1,7 +1,7 @@
 - alias: Notify high co2 level
   trigger:
   - platform: numeric_state
-    entity_id: sensor.co2 
+    entity_id: sensor.co2
     above: 800
     for:
       minutes: 15
@@ -14,10 +14,35 @@
 - alias: Notify humidifier low water level
   trigger:
   - platform: numeric_state
-    entity_id: sensor.humidifier_water_level 
+    entity_id: sensor.humidifier_water_level
     below: 10
   action:
     service: notify.telegram
     data_template:
       message: "В увлажнителе кончилась вода"
 
+- alias: Notify dispenser no water
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.pet_water_dispenser_water
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 3
+  action:
+    service: notify.telegram
+    data_template:
+      message: "О нет! Пряника скоро замучает жажда!"
+
+- alias: Notify dispenser has water
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.pet_water_dispenser_water
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 15
+  action:
+    service: notify.telegram
+    data_template:
+      message: "Фуф! Пряник может пить сколько влезет!"

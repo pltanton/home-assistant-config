@@ -20,7 +20,7 @@
   state_topic: /atmosphere/humi
   name: Humidity room
   unit_of_measurement: '%'
-  icon_template: mdi:water-percent
+  icon: mdi:water-percent
 
 - platform: template
   sensors:

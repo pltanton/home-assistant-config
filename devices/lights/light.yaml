@@ -1,0 +1,18 @@
+- platform: xiaomi_miio
+  name: Room light
+  host: 192.168.30.2
+  token: !secret philips_room_token
+  model: philips.light.ceiling
+
+- platform: xiaomi_miio
+  name: Kitchen light
+  host: 192.168.30.3
+  token: !secret philips_kitchen_token
+  model: philips.light.ceiling
+
+
+- platform: group
+  name: Room ligts
+  entities:
+  - light.room_light
+  - light.bed_light

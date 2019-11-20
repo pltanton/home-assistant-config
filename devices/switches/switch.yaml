@@ -1,0 +1,29 @@
+- platform: template
+  switches:
+    robot:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'on') }}"
+      turn_on:
+        service: vacuum.turn_on
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+      turn_off:
+        service: vacuum.xiaomi_vacuum_cleaner
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+- platform: mqtt
+  name: "Room camera switch"
+  state_topic: "stat/sonoff_camera_1/POWER"
+  command_topic: "cmnd/sonoff_camera_1/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Kitchen camera switch"
+  state_topic: "stat/sonoff_camera_2/POWER"
+  command_topic: "cmnd/sonoff_camera_2/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true

@@ -1,74 +1,102 @@
 title: My Awesome Home
 views:
-  # View tab title.
-- title: Example
+- title: Main
   panel: false
   # Makes the first card fill the view
   cards:
-  - type: picture-glance
-    title: Room
-    camera_image: camera.room_camera_ffmpeg
-    entities:
-    - vacuum.xiaomi_vacuum_cleaner
+  #######################################################
+  ######### Room camera config section
+  #######################################################
+  - type: conditional
+    conditions:
+    - entity: switch.room_camera_switch
+      state: "on"
+    card:
+      type: picture-glance
+      title: Room
+      camera_image: camera.room_camera_ffmpeg
+      cavera_view: live
+      entities:
+      - vacuum.xiaomi_vacuum_cleaner
+      - light.bed_light
+      - light.room_light
+      - switch.room_camera_switch
 
-    - light.yeelight_color2_04cf8c773783
-    - light.room_light
-    - switch.room_camera_switch
-
-  - type: entities
-    show_header_toggle: false
-    title: Room
-    entities:
-    - fan.xiaomi_miio_device
-    - light.yeelight_color2_04cf8c773783
-    - light.room_light
-    - vacuum.xiaomi_vacuum_cleaner
-
-  - type: entities
-    show_header_toggle: false
-    title: Other
-    entities:
-    - light.kitchen_light
-    - light.yeelight_white_f0b4290f2bf4
-
-    - light.gateway_light_7811dcb203d8
-    - light.yeelight_color2_04cf8c7b7117
-
-    - fan.xiaomi_miio_device
-
+  - type: conditional
+    conditions:
+    - entity: switch.room_camera_switch
+      state: "off"
+    card:
+      type: picture-glance
+      title: Room
+      camera_image: camera.room_camera_disabled
+      cavera_view: live
+      entities:
+      - vacuum.xiaomi_vacuum_cleaner
+      - light.bed_light
+      - light.room_light
+      - switch.room_camera_switch
+  #######################################################
   - type: glance
-    title: Sensors
     entities:
     - entity: sensor.temperature_room
     - entity: sensor.humidity_room
     - entity: sensor.co2
 
-  - type: glance
-    title: Switches
+  - type: entities
+    show_header_toggle: false
+    title: Room
     entities:
+    - light.bed_light
+    - light.room_light
+    - vacuum.xiaomi_vacuum_cleaner
+    - fan.xiaomi_miio_device
+
+  - type: entity-filter
+    card:
+      show_header_toggle: false
+      type: entities
+      title: Other lights
+    entities:
+    - light.kitchen_light
+    - light.yeelight_white_f0b4290f2bf4
+
+    - light.gateway_light_7811dcb203d8
+    - light.front_door_light
+    state_filter:
+    - "on"
+    - "off"
+
+  - type: entities
+    title: Switches
+    show_header_toggle: false
+    entities:
+    - entity: switch.wall_switch_left_158d000302ef25
+      name: Toilet
+    - entity: switch.wall_switch_right_158d000302ef25
+      name: Bathroom
     - entity: switch.wall_switch_left_158d00014a5529
       name: Bed
-      tap_action: toggle
     - entity: switch.wall_switch_right_158d00014a5529
       name: Room
-      tap_action: toggle
     - entity: switch.wall_switch_158d00014a9c3c
-      name: Kitcehn
-      tap_action: toggle
+      name: Kitchen
     - entity: switch.room_camera_switch
-      name: Room Camera
-      tap_action: toggle
+      name: Camera room
 
-  - type: glance
-    title: Scenes
+- title: Scripts and scenes
+  cards:
+  - type: entities
+    title: Common scripts
     entities:
-    - entity: scene.bright_bedroom
-      tap_action: call-service
-      service: scene.turn_on
-    - entity: scene.dim_bedroom
-      tap_action: call-service
-      service: scene.turn_on
-    - entity: scene.cinema
-      tap_action: call-service
-      service: scene.turn_on
+    - script.human_arrive
+    - script.human_leave
+    - script.turn_off_lights
 
+  - type: entities
+    title: Scenes
+    show_header_toggle: false
+    entities:
+    - scene.bright_bedroom
+    - scene.dim_bedroom
+    - scene.cinema

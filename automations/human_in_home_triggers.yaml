@@ -1,35 +1,17 @@
 - alias: Automatically turn on lights in bedroom when someone come home
   trigger:
-  - platform: state
-    entity_id: 
-      - group.human_devices
-    from: not_home
+    platform: state
+    entity_id: group.privileged_humans
+    #from: not_home
     to: home
-
-  condition:
-  - condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ states.group.bedroom_lights.state == "off" }}'
-    - condition: state
-      entity_id: group.human_devices
-      state: home
-  action: 
+  action:
   - service: script.human_arrive
 
 - alias: Turn off light when no one home
   trigger:
-  - platform: state
-    entity_id: 
-      - group.human_devices
-    from: home
+    platform: state
+    entity_id: group.privileged_humans
+    #from: home
     to: not_home
-  condition:
-  - condition: state
-    entity_id: device_tracker.anton_phone
-    state: not_home
-  - condition: state
-    entity_id: device_tracker.julsa_phone
-    state: not_home
   action:
   - service: script.human_leave

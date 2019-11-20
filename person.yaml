@@ -1,0 +1,9 @@
+- name: Anton
+  id: anton
+  device_trackers:
+  - device_tracker.anton_phone_router
+  - device_tracker.anton_phone
+- name: Julia
+  id: julsa
+  device_trackers:
+  - device_tracker.julsa_phone_router
