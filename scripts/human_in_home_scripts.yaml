@@ -4,27 +4,27 @@ human_arrive:
   - service: switch.turn_off
     entity_id:
     - switch.room_camera_switch
+    - switch.kitchen_camera_switch
   - service: scene.turn_on
     data_template:
       entity_id: >-
         {% if states.sensor.light_room.state|float < 50 %}
           scene.bright_bedroom
         {% endif %}
-  - service: light.turn_off
-    entity_id:
-    - light.gateway_light_7811dcb203d8_2
 
 human_leave:
   alias: Human leave home
   sequence:
-  - service: light.turn_off
   - service: switch.turn_on
     entity_id:
     - switch.room_camera_switch
-  - service: light.turn_on
-    entity_id:
-    - light.gateway_light_7811dcb203d8_2
+    - switch.kitchen_camera_switch
+
+  - service: light.turn_off
   - service: switch.turn_off
     entity_id:
-    - switch.wall_switch_left_158d000302ef25
-    - switch.wall_switch_right_158d000302ef25
+    - switch.bathroom_light_relay_switch_right
+    - switch.bathroom_light_relay_switch_left
+    - switch.corridor_light_relay_switch_right
+    - switch.sonoff_acdc_1
+    - switch.sonoff_acdc_2

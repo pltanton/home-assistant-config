@@ -32,6 +32,20 @@ logger:
     homeassistant.components.device_tracker: critical
     homeassistant.components.camera: critical
 
+history:
+  include:
+    domains:
+    - switch
+    - person
+    - light
+
+logbook:
+  include:
+    domains:
+    - switch
+    - person
+    - light
+
 lovelace:
   mode: yaml
 
@@ -52,25 +66,16 @@ prometheus:
 
 # Enables configuration UI
 config:
+mobile_app:
+
 
 http:
   base_url: https://home.kaliwe.ru
   trusted_networks: [ 192.168.30.0/24 ]
 
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
-
-# Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-
-# Enables support for tracking state changes over time
-history:
-
-# View all events in a logbook
-logbook:
-
-# Enables a map showing the location of tracked devices
+system_health:
 map:
 
 zone:
@@ -96,10 +101,10 @@ automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 scene: !include scenes.yaml
 
-xiaomi_aqara:
-  discovery_retry: 10
-  gateways:
-    - key: gpasabtddj74uhop
+#xiaomi_aqara:
+#  discovery_retry: 10
+#  gateways:
+#    - key: gpasabtddj74uhop
 
 discovery:
   ignore:
@@ -150,6 +155,7 @@ google_assistant:
 switch: !include devices/switches/switch.yaml
 
 mqtt:
+  discovery: true
   broker: 127.0.0.1
   username: hass
   password: !secret mqtt
@@ -174,7 +180,6 @@ fan:
     host: 192.168.30.9
     token: !secret humidifier_token
 
-system_health:
 stream:
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
@@ -194,3 +199,53 @@ xiaomi_cooker:
   name: Xiaomi Rice Cooker
   host: 192.168.30.14
   token: 5a90f7e0432515a40d1d995094cc375b
+
+yandex_smart_home:
+  filter:
+    include_domains:
+    - light
+    - vacuum
+    include_entities:
+    - switch.corridor_light_relay_switch_right
+    - switch.bathroom_light_relay_switch_left
+    - switch.bathroom_light_relay_switch_right
+    - switch.sonoff_ac_1
+    - switch.sonoff_ac_2
+    - switch.sonoff_ac_3
+  entity_config:
+    vacuum.xiaomi_vacuum_cleaner:
+      name: Пылесос
+      room: Комната
+    light.bed_light:
+      name: Кроватный свет
+      room: Комната
+    light.room_light:
+      name: Основной свет
+      room: Комната
+    switch.sonoff_ac_1:
+      name: Кроватная гирлянда
+      room: Комната
+    switch.sonoff_ac_2:
+      name: Диванная гирлянда
+      room: Комната
+    switch.sonoff_ac_3:
+      name: Цветная гирлянда
+      room: Комната
+    light.kitchen_light:
+      name: Кухонный свет
+      room: Кухня
+    light.front_door_light:
+      name: Входной свет
+      room: Коридор
+    switch.corridor_light_relay_switch_right:
+      name: Кладовка
+      room: Коридор
+    switch.bathroom_light_relay_switch_left:
+      name: Туалет
+      room: Коридор
+    switch.bathroom_light_relay_switch_right:
+      name: Ванная
+      room: Коридор
+
+
+

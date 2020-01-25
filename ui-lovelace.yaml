@@ -36,12 +36,20 @@ views:
       - light.bed_light
       - light.room_light
       - switch.room_camera_switch
+
   #######################################################
-  - type: glance
-    entities:
-    - entity: sensor.temperature_room
-    - entity: sensor.humidity_room
-    - entity: sensor.co2
+
+  - type: horizontal-stack
+    cards:
+    - type: sensor
+      entity: sensor.temperature_room
+      graph: line
+    - type: sensor
+      entity: sensor.humidity_room
+      graph: line
+    - type: sensor
+      entity: sensor.co2
+      graph: line
 
   - type: entities
     show_header_toggle: false
@@ -59,30 +67,45 @@ views:
       title: Other lights
     entities:
     - light.kitchen_light
-    - light.yeelight_white_f0b4290f2bf4
-
-    - light.gateway_light_7811dcb203d8
     - light.front_door_light
+    - entity: switch.corridor_light_relay_switch_right
+      name: Pentry
+
+    - entity: switch.bathroom_light_relay_switch_left
+      name: Toilet
+    - entity: switch.bathroom_light_relay_switch_right
+      name: Bathroom
     state_filter:
     - "on"
     - "off"
 
   - type: entities
+    title: Wall switches
+    show_header_toggle: false
+    entities:
+    - entity: switch.room_light_relay_switch_left
+      name: Bed
+    - entity: switch.room_light_relay_switch_right
+      name: Room
+    - entity: switch.kitchen_light_relay_switch
+      name: Kitchen
+    - entity: switch.corridor_light_relay_switch_left
+      name: Front door switch
+
+  - type: entities
     title: Switches
     show_header_toggle: false
     entities:
-    - entity: switch.wall_switch_left_158d000302ef25
-      name: Toilet
-    - entity: switch.wall_switch_right_158d000302ef25
-      name: Bathroom
-    - entity: switch.wall_switch_left_158d00014a5529
-      name: Bed
-    - entity: switch.wall_switch_right_158d00014a5529
-      name: Room
-    - entity: switch.wall_switch_158d00014a9c3c
-      name: Kitchen
+    - entity: switch.sonoff_ac_1
+      name: Bed garland
+    - entity: switch.sonoff_ac_2
+      name: Coach garland
+    - entity: switch.sonoff_ac_3
+      name: Christmas tree garland
     - entity: switch.room_camera_switch
       name: Camera room
+    - entity: switch.kitchen_camera_switch
+      name: Camera kitchen
 
 - title: Scripts and scenes
   cards:

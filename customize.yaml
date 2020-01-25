@@ -25,3 +25,5 @@ switch.room_camera_switch:
   icon: mdi:video
 light.gateway_light_7811dcb203d8:
   friendly_name: Gateway light
+switch.kitchen_camera_switch:
+  icon: mdi:video

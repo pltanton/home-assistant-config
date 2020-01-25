@@ -11,3 +11,6 @@ tts
 
 *.log
 *.db
+
+custom_components/._hacs
+www/
