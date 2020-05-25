@@ -1,0 +1,4 @@
+discovery: true
+broker: 127.0.0.1
+username: hass
+password: !secret mqtt

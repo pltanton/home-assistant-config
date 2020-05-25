@@ -1,10 +1,36 @@
 - alias: turn humidifier off on high humidity
   trigger:
   - platform: numeric_state
-    entity_id: sensor.humidity_room 
+    entity_id: sensor.humidity_room
     above: 42
     for:
       minutes: 10
   action:
     service: fan.turn_off
+    entity_id: fan.xiaomi_miio_device
+
+- alias: Notify humidifier low water level
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.humidifier_water_level
+    below: 25
+    for:
+      seconds: 15
+  action:
+    service: notify.telegram
+    data_template:
+      message: "В увлажнителе кончилась вода и скоро будет выключен!"
+
+- alias: Turn off humidifier low water level
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.humidifier_water_level
+    below: 25
+    for:
+      minutes: 15
+  action:
+  - service: notify.telegram
+    data_template:
+      message: "Увлажнитель выключен!"
+  - service: homeassistant.turn_off
     entity_id: fan.xiaomi_miio_device

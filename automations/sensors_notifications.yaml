@@ -11,15 +11,18 @@
       title: "Пора проветрить комнату"
       message: "Уровень CO2 {{ states.sensor.co2.state }} PPM"
 
-- alias: Notify humidifier low water level
+- alias: Notify humidifier nearly low water level
   trigger:
   - platform: numeric_state
     entity_id: sensor.humidifier_water_level
-    below: 10
+    below: 35
+    for:
+      seconds: 15
   action:
     service: notify.telegram
     data_template:
-      message: "В увлажнителе кончилась вода"
+      message: "В увлажнителе мало воды!"
+
 
 - alias: Notify dispenser no water
   trigger:
@@ -41,7 +44,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 15
+      minutes: 3
   action:
     service: notify.telegram
     data_template:

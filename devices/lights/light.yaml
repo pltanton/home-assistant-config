@@ -6,7 +6,7 @@
 
 - platform: xiaomi_miio
   name: Kitchen light
-  host: 192.168.30.3
+  host: 10.1.0.200
   token: !secret philips_kitchen_token
   model: philips.light.ceiling
 

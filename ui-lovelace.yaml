@@ -60,24 +60,18 @@ views:
     - vacuum.xiaomi_vacuum_cleaner
     - fan.xiaomi_miio_device
 
-  - type: entity-filter
-    card:
-      show_header_toggle: false
-      type: entities
-      title: Other lights
+  - type: entities
+    show_header_toggle: false
+    type: entities
+    title: Other lights
     entities:
     - light.kitchen_light
     - light.front_door_light
     - entity: switch.corridor_light_relay_switch_right
       name: Pentry
-
-    - entity: switch.bathroom_light_relay_switch_left
-      name: Toilet
+    - light.toilet_light
     - entity: switch.bathroom_light_relay_switch_right
       name: Bathroom
-    state_filter:
-    - "on"
-    - "off"
 
   - type: entities
     title: Wall switches
@@ -91,6 +85,8 @@ views:
       name: Kitchen
     - entity: switch.corridor_light_relay_switch_left
       name: Front door switch
+    - entity: switch.bathroom_light_relay_switch_left
+      name: Toilet
 
   - type: entities
     title: Switches

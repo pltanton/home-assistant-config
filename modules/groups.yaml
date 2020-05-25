@@ -1,0 +1,27 @@
+bedroom_lights:
+  name: Bedroom
+  entities:
+  - light.room_light
+  - light.bed_light
+
+kitchen_lights:
+  name: Kitchen
+  entities:
+  - light.kitchen_light
+
+toilet_lights:
+  name: Toilet
+  entities:
+  - light.yeelight_white_f0b4290f2bf4
+
+hallaway_lights:
+  name: Hallaway
+  entities:
+  - light.gateway_light_7811dcb203d8_2
+  - light.front_door_light
+
+privileged_humans:
+  name: Priviliged humans
+  entities:
+    - person.anton
+    - person.julia

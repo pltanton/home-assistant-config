@@ -1,41 +1,53 @@
-- alias: Toggle bed light
-  trigger:
-  - event_data:
-      entity_id: binary_sensor.wall_switch_left_158d000183f051
-    event_type: click
-    platform: event
-  action:
-  - service: light.toggle
-    data:
-      entity_id: light.yeelight_color2_04cf8c773783
-
-- alias: Toggle room light
-  trigger:
-  - event_data:
-      entity_id: binary_sensor.wall_switch_right_158d000183f051
-    event_type: click
-    platform: event
-  action:
-  - service: light.toggle
-    data:
-      entity_id: light.room_light
-
-- alias: Switch philips room scene
-  trigger:
-  - event_data:
-      entity_id: binary_sensor.wall_switch_both_158d000183f051
-    event_type: click
-    platform: event
-  action:
-    service: script.switch_philips_room_scene
-
-- alias: Fix kitchen switch
-  trigger:
-  - event_data:
-      entity_id: binary_sensor.wall_switch_both_158d000183f051
-    event_type: click
-    platform: event
-  action:
-    service: script.switch_philips_room_scene
-
 # vim: ts=2 sw=2:
+
+- alias: Room left switch turn on if off on button click
+  trigger:
+    platform: state
+    entity_id: sensor.room_light_relay_click
+    to: 'left'
+  condition:
+    condition: state
+    entity_id: switch.room_light_relay_switch_left
+    state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.room_light_relay_switch_left
+
+- alias: Room right switch turn on if off on button click
+  trigger:
+    platform: state
+    entity_id: sensor.room_light_relay_click
+    to: 'right'
+  condition:
+    condition: state
+    entity_id: switch.room_light_relay_switch_right
+    state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.room_light_relay_switch_right
+
+- alias: Kitchen switch turn on if off on button click
+  trigger:
+    platform: state
+    entity_id: sensor.kitchen_light_relay_click
+    to: 'single'
+  condition:
+    condition: state
+    entity_id: switch.kitchen_light_relay_switch
+    state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.kitchen_light_relay_switch
+
+- alias: Front door switch turn on if off on button click
+  trigger:
+    platform: state
+    entity_id: sensor.corridor_light_relay_click
+    to: 'left'
+  condition:
+    condition: state
+    entity_id: switch.corridor_light_relay_switch_left
+    state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.corridor_light_relay_switch_left

@@ -1,0 +1,35 @@
+toggle_light_with_sync:
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {{ 'script.turn_off_target_light' if is_state(target, 'on') else 'script.turn_on_light_with_sync' }}
+      variables:
+        source: "{{ source }}"
+        target: "{{ target }}"
+
+turn_off_target_light:
+  sequence:
+  - service: light.turn_off
+    data_template:
+      entity_id: "{{ target }}"
+
+turn_on_light_with_sync:
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >-
+        {{ 'script.turn_on_light_with_sync_force' if is_state(source, 'on') else 'script.turn_on_light_with_time_brightness' }}
+      variables:
+        source: "{{ source }}"
+        target: "{{ target }}"
+
+turn_on_light_with_sync_force:
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: "{{ target }}"
+      brightness: >-
+        {{ state_attr(source, 'brightness') }}
+      color_temp: >-
+        {{ state_attr(source, 'color_temp') }}

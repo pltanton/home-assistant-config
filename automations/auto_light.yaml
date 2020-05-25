@@ -1,26 +1,59 @@
-- alias: Turn on room light by sensor
+- alias: "Update room light at key hour"
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.light_room 
-    below: 60
-    for:
-      minutes: 15
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
   action:
-  - service: scene.turn_on
+    service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
     data:
-      entity_id: scene.bright_bedroom
+      variables:
+        target: 'light.room_light'
 
-- alias: Turn off light by sensor
+- alias: "Update bed light at key hour"
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.light_room 
-    above: 61
-    for:
-      minutes: 5 
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
   action:
-  - service: light.turn_off
+    service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
     data:
-      entity_id: light.room_lights
-  - service: light.turn_off
+      variables:
+        target: 'light.bed_light'
+
+- alias: "Update kitchen light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  action:
+    service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
     data:
-      entity_id: light.kitchen_light
+      variables:
+        target: 'light.kitchen_light'
+
+- alias: "Update corridor light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  action:
+    service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.corridor_light'

@@ -1,7 +1,10 @@
 devices:
-  192.168.30.10:
-    name: Front Door Light
+  10.1.0.202:
+    name: Toilet Light
     model: color2
-  192.168.30.11:
+  10.1.0.203:
     name: Bed Light
     model: color2
+  10.1.0.206:
+    name: Front Door Light
+    model: mono1

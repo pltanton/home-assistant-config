@@ -598,3 +598,58 @@ d4_38_9c_74_a4_6e:
   name: 38 a4 ed 15 1e 69
   picture:
   track: true
+
+2c_26_17_57_e4_dc:
+  hide_if_away: false
+  icon:
+  mac: 2C:26:17:57:E4:DC
+  name: 2c 26 17 57 e4 dc
+  picture:
+  track: true
+
+70_ef_00_8c_aa_66:
+  hide_if_away: false
+  icon:
+  mac: 70:EF:00:8C:AA:66
+  name: 70 ef 00 8c aa 66
+  picture:
+  track: true
+
+1c_cc_d6_f8_c9_65:
+  hide_if_away: false
+  icon:
+  mac: 1C:CC:D6:F8:C9:65
+  name: 1c cc d6 f8 c9 65
+  picture:
+  track: true
+
+e4_2b_34_0b_ae_c5:
+  hide_if_away: false
+  icon:
+  mac: E4:2B:34:0B:AE:C5
+  name: e4 2b 34 0b ae c5
+  picture:
+  track: true
+
+94_65_2d_e2_da_89:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:E2:DA:89
+  name: 94 65 2d e2 da 89
+  picture:
+  track: true
+
+4e_13_2f_28_c1_f0:
+  hide_if_away: false
+  icon:
+  mac: 4E:13:2F:28:C1:F0
+  name: 4e 13 2f 28 c1 f0
+  picture:
+  track: true
+
+00_22_fb_80_73_c6:
+  icon:
+  mac: 00:22:FB:80:73:C6
+  name: 00_22_fb_80_73_c6
+  picture:
+  track: true

@@ -1,0 +1,45 @@
+filter:
+  include_domains:
+  - light
+  - vacuum
+  include_entities:
+  - switch.corridor_light_relay_switch_right
+  - switch.bathroom_light_relay_switch_left
+  - switch.bathroom_light_relay_switch_right
+#  - switch.sonoff_ac_1
+#  - switch.sonoff_ac_2
+#  - switch.sonoff_ac_3
+entity_config:
+  vacuum.xiaomi_vacuum_cleaner:
+    name: Пылесос
+    room: Комната
+  light.bed_light:
+    name: Кроватный свет
+    room: Комната
+  light.room_light:
+    name: Основной свет
+    room: Комната
+  switch.sonoff_ac_1:
+    name: Кроватная гирлянда
+    room: Комната
+  switch.sonoff_ac_2:
+    name: Диванная гирлянда
+    room: Комната
+  switch.sonoff_ac_3:
+    name: Цветная гирлянда
+    room: Комната
+  light.kitchen_light:
+    name: Кухонный свет
+    room: Кухня
+  light.front_door_light:
+    name: Входной свет
+    room: Коридор
+  light.toilet_light:
+    name: Туалетный свет
+    room: Туалет
+  switch.corridor_light_relay_switch_right:
+    name: Кладовка
+    room: Коридор
+  switch.bathroom_light_relay_switch_right:
+    name: Ванная
+    room: Коридор
