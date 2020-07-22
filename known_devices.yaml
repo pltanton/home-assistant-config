@@ -653,3 +653,10 @@ e4_2b_34_0b_ae_c5:
   name: 00_22_fb_80_73_c6
   picture:
   track: true
+
+b6_a7_e0_78_c7_e2:
+  icon:
+  mac: B6:A7:E0:78:C7:E2
+  name: b6_a7_e0_78_c7_e2
+  picture:
+  track: true

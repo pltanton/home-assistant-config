@@ -1,0 +1,54 @@
+vacuum_go_to_clean:
+  alias: Go to clean
+  icon: "mdi:broom"
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.rockrobo
+      command: 'go_to'
+      params:
+        'spot_id': 'Clean spot'
+
+vacuum_tv_zone:
+  alias: "Vacuum TV zone"
+  icon: "mdi:television-classic"
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.rockrobo
+      command: 'zoned_cleanup'
+      params:
+        'zone_ids': ['TV']
+
+vacuum_kitchen_zone:
+  alias: "Vacuum Kitchen"
+  icon: "mdi:fridge-outline"
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.rockrobo
+      command: 'zoned_cleanup'
+      params:
+        'zone_ids': ['Kitchen']
+
+vacuum_quoridor_zone:
+  alias: "Vacuum Quoridor"
+  icon: "mdi:door"
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.rockrobo
+      command: 'zoned_cleanup'
+      params:
+        'zone_ids': ['Quoridor']
+
+vacuum_bed_zone:
+  alias: "Vacuum room (bed)"
+  icon: "mdi:bed-empty"
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.rockrobo
+      command: 'zoned_cleanup'
+      params:
+        'zone_ids': ['Room']

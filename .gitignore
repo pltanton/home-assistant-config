@@ -6,6 +6,7 @@ __pycache__/
 
 .uuid
 secrets.yaml
+secrets/*
 core
 tts
 

@@ -1,0 +1,5 @@
+run_scan:
+  alias: Scan
+  icon: "mdi:scanner"
+  sequence:
+  - service: shell_command.scan

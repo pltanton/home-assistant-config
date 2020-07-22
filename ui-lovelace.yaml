@@ -17,7 +17,7 @@ views:
       camera_image: camera.room_camera_ffmpeg
       cavera_view: live
       entities:
-      - vacuum.xiaomi_vacuum_cleaner
+      - vacuum.rockrobo
       - light.bed_light
       - light.room_light
       - switch.room_camera_switch
@@ -32,33 +32,34 @@ views:
       camera_image: camera.room_camera_disabled
       cavera_view: live
       entities:
-      - vacuum.xiaomi_vacuum_cleaner
+      - vacuum.rockrobo
       - light.bed_light
       - light.room_light
       - switch.room_camera_switch
 
   #######################################################
 
-  - type: horizontal-stack
+  - type: custom:vertical-stack-in-card
     cards:
-    - type: sensor
-      entity: sensor.temperature_room
-      graph: line
-    - type: sensor
-      entity: sensor.humidity_room
-      graph: line
-    - type: sensor
-      entity: sensor.co2
-      graph: line
+    - type: horizontal-stack
+      cards:
+      - type: sensor
+        entity: sensor.temperature_room
+        graph: line
+      - type: sensor
+        entity: sensor.humidity_room
+        graph: line
+      - type: sensor
+        entity: sensor.co2
+        graph: line
 
-  - type: entities
-    show_header_toggle: false
-    title: Room
-    entities:
-    - light.bed_light
-    - light.room_light
-    - vacuum.xiaomi_vacuum_cleaner
-    - fan.xiaomi_miio_device
+    - type: entities
+      show_header_toggle: false
+      entities:
+      - light.bed_light
+      - light.room_light
+      - vacuum.rockrobo
+      #- fan.xiaomi_miio_device
 
   - type: entities
     show_header_toggle: false
@@ -103,7 +104,43 @@ views:
     - entity: switch.kitchen_camera_switch
       name: Camera kitchen
 
+- title: Vacuum
+  panel: false
+  cards:
+  - type: entities
+    title: Scripts
+    show_header_toggle: false
+    entities:
+    - script.vacuum_go_to_clean
+    - script.vacuum_tv_zone
+    - script.vacuum_bed_zone
+    - script.vacuum_kitchen_zone
+    - script.vacuum_quoridor_zone
+  - type: custom:vertical-stack-in-card
+    cards:
+    - type: entities
+      show_header_toggle: false
+      entities:
+      - vacuum.rockrobo
+    - type: 'custom:valetudo-map-card'
+      entity: sensor.xiaomi_map
+      rotate: 0
+      #crop:
+      #  top: 78
+      #  bottom: 50
+      #  left: 100
+      #  right: 0
+      vacuum_entity: vacuum.rockrobo
+      map_scale: 2
+      title:
+
+
 - title: Scripts and scenes
+  cards:
+  - type: entities
+    title: Scanner
+    entities:
+    - script.run_scan
   cards:
   - type: entities
     title: Common scripts

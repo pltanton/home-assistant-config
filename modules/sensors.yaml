@@ -61,3 +61,10 @@
   - filter: lowpass
     time_constant: 10
     precision: 2
+
+- platform: mqtt
+  state_topic: "valetudo/rockrobo/state"
+  json_attributes_topic: "valetudo/rockrobo/map_data_parsed"
+  name: xiaomi_map
+  value_template: 'OK'
+  scan_interval: 5

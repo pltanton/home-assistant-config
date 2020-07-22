@@ -13,9 +13,6 @@ homeassistant:
   - type: legacy_api_password
     api_password: !secret http_password
 
-
-
-
 history:
   include:
     domains:
@@ -32,6 +29,11 @@ logbook:
 
 lovelace:
   mode: yaml
+  resources:
+  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    type: module
+  - url: /hacsfiles/lovelace-valetudo-map-card/valetudo-map-card.js
+    type: module
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -89,15 +91,15 @@ sensor: !include modules/sensors.yaml
 group: !include modules/groups.yaml
 recorder: !include modules/recorder.yaml
 logger: !include modules/logger.yaml
+shell_command: !include modules/shell_commands.yaml
 
-automation: !include_dir_merge_list automations
-script: !include_dir_merge_named scripts
+automation: !include_dir_merge_list modules/automations
+script: !include_dir_merge_named modules/scripts
 
 # --------------- Devices ---------------
-vacuum: !include devices/vacuums.yaml
-fan: !include_dir_merge_list devices/fans
-switch: !include devices/switches/switch.yaml
-light: !include devices/lights/light.yaml
-yeelight: !include devices/lights/yeelight.yaml
-camera: !include devices/cameras.yaml
-xiaomi_cooker: !include devices/rice_cooker.yaml
+fan: !include_dir_merge_list modules/devices/fans
+switch: !include modules/devices/switches/switch.yaml
+light: !include modules/devices/lights/light.yaml
+yeelight: !include modules/devices/lights/yeelight.yaml
+camera: !include modules/devices/cameras.yaml
+xiaomi_cooker: !include modules/devices/rice_cooker.yaml
