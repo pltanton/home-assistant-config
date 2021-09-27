@@ -1,9 +1,11 @@
 - name: Anton
   id: anton
   device_trackers:
-  - device_tracker.anton_phone_router
-  - device_tracker.anton_phone
+    - device_tracker.anton_phone_router
+    - device_tracker.anton_phone
+    - device_tracker.5e_a2_11_22_61_8c
 - name: Julia
   id: julsa
   device_trackers:
-  - device_tracker.julsa_phone_router
+    # - device_tracker.julsa_phone_router
+    - device_tracker.huawei_nova_3_f4f2725d347

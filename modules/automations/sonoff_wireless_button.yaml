@@ -1,0 +1,43 @@
+- alias: Sonoff room button single click on light
+  trigger:
+    platform: state
+    entity_id: sensor.0x00124b001f9b061f_action
+    to: 'single'
+  condition:
+    condition: state
+    entity_id: group.illumination
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.illumination
+
+- alias: Sonoff room button single click off light
+  trigger:
+    platform: state
+    entity_id: sensor.0x00124b001f9b061f_action
+    to: 'single'
+  condition:
+    condition: state
+    entity_id: group.illumination
+    state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: light.room_light
+
+- alias: Sonoff room button double click
+  trigger:
+    platform: state
+    entity_id: sensor.0x00124b001f9b061f_action
+    to: 'double'
+  action:
+    entity_id: script.iterate_room_brightness
+    service: script.turn_on
+
+# - alias: Sonoff room button long click
+#   trigger:
+#     platform: state
+#     entity_id: sensor.0x00124b001f9b061f_action
+#     to: 'single'
+#   action:
+#     entity_id: script.run_scan
+#     service: script.turn_on

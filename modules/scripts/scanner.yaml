@@ -1,5 +1,9 @@
 run_scan:
   alias: Scan
   icon: "mdi:scanner"
+  fields:
+    title:
+      description: 'The title of the notification'
+      example: 'State change'
   sequence:
   - service: shell_command.scan

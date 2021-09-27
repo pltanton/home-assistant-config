@@ -17,11 +17,24 @@ toilet_lights:
 hallaway_lights:
   name: Hallaway
   entities:
-  - light.gateway_light_7811dcb203d8_2
   - light.front_door_light
+  - switch.corridor_light_relay_switch_right
+  - switch.bathroom_light_relay_switch_right
+  - light.toilet_light
 
 privileged_humans:
   name: Priviliged humans
   entities:
     - person.anton
     - person.julia
+
+illumination:
+  name: All lights and light switches
+  entities:
+  - light.front_door_light
+  - light.room_light
+  - light.bed_light
+  - light.kitchen_light
+  - switch.corridor_light_relay_switch_right
+  - switch.bathroom_light_relay_switch_right
+  - light.toilet_light

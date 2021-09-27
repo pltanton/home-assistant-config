@@ -1,0 +1,91 @@
+###########
+# Corridor
+###########
+
+- alias: Corridor left button click
+  trigger:
+    platform: state
+    entity_id: sensor.corridor_light_relay_click
+    to: 'left'
+  action:
+    entity_id: light.front_door_light
+    service: light.toggle
+
+- alias: Bathroom left button click
+  trigger:
+    platform: state
+    entity_id: sensor.bathroom_light_relay_click
+    to: 'left'
+  action:
+    entity_id: light.toilet_light
+    service: light.toggle
+
+- alias: Bathroom right button click
+  trigger:
+    platform: state
+    entity_id: sensor.bathroom_light_relay_click
+    to: 'right'
+  action:
+    service: switch.toggle
+    entity_id: switch.bathroom_light_relay_switch_right
+
+- alias: Bathroom booth button click
+  trigger:
+    platform: state
+    entity_id: sensor.bathroom_light_relay_click
+    to: 'both'
+  action:
+    entity_id: script.iterate_kitchen_brightness
+    service: script.turn_on
+
+###########
+# ROOM
+###########
+
+- alias: Room left button click
+  trigger:
+    platform: state
+    entity_id: sensor.room_light_relay_click
+    to: 'left'
+  action:
+    service: script.turn_on
+    entity_id: script.toggle_light_with_sync
+    data:
+      variables:
+        target: 'light.bed_light'
+        source: 'light.room_light'
+
+- alias: Room right button click
+  trigger:
+    platform: state
+    entity_id: sensor.room_light_relay_click
+    to: 'right'
+  action:
+    service: script.turn_on
+    entity_id: script.toggle_light_with_sync
+    data:
+      variables:
+        target: 'light.room_light'
+        source: 'light.bed_light'
+
+- alias: Room booth button click
+  trigger:
+    platform: state
+    entity_id: sensor.room_light_relay_click
+    to: 'both'
+  action:
+    entity_id: script.iterate_room_brightness
+    service: script.turn_on
+
+###########
+# KITCHEN
+###########
+
+- alias: Kitchen button click
+  trigger:
+    platform: state
+    entity_id: sensor.kitchen_light_relay_click
+    to: 'single'
+  action:
+    entity_id: light.kitchen_light
+    service: light.toggle

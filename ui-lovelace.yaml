@@ -1,6 +1,8 @@
 title: My Awesome Home
+custom_header:
+  compact_mode: true
 views:
-- title: Main
+- icon: 'mdi:home-assistant'
   panel: false
   # Makes the first card fill the view
   cards:
@@ -14,10 +16,11 @@ views:
     card:
       type: picture-glance
       title: Room
-      camera_image: camera.room_camera_ffmpeg
+      camera_image: camera.room_camera
       cavera_view: live
       entities:
       - vacuum.rockrobo
+      - script.run_scan
       - light.bed_light
       - light.room_light
       - switch.room_camera_switch
@@ -29,37 +32,47 @@ views:
     card:
       type: picture-glance
       title: Room
-      camera_image: camera.room_camera_disabled
-      cavera_view: live
+      image: /local/room_camera_disabled.png
       entities:
       - vacuum.rockrobo
+      - script.run_scan
       - light.bed_light
       - light.room_light
       - switch.room_camera_switch
 
   #######################################################
 
-  - type: custom:vertical-stack-in-card
-    cards:
-    - type: horizontal-stack
-      cards:
-      - type: sensor
-        entity: sensor.temperature_room
-        graph: line
-      - type: sensor
-        entity: sensor.humidity_room
-        graph: line
-      - type: sensor
-        entity: sensor.co2
-        graph: line
+  - type: conditional
+    conditions:
+    - entity: switch.kitchen_camera_switch
+      state: "on"
+    card:
+      type: picture-entity
+      title: Room
+      entity: camera.kitchen_camera
+      cavera_view: live
 
-    - type: entities
-      show_header_toggle: false
-      entities:
-      - light.bed_light
-      - light.room_light
-      - vacuum.rockrobo
-      #- fan.xiaomi_miio_device
+  # - type: custom:vertical-stack-in-card
+  #   cards:
+  - type: horizontal-stack
+    cards:
+    - type: sensor
+      entity: sensor.temperature_room
+      graph: line
+    - type: sensor
+      entity: sensor.humidity_room
+      graph: line
+    - type: sensor
+      entity: sensor.co2
+      graph: line
+
+  - type: entities
+    show_header_toggle: false
+    entities:
+    - light.bed_light
+    - light.room_light
+    - vacuum.rockrobo
+    - fan.xiaomi_miio_device
 
   - type: entities
     show_header_toggle: false
@@ -73,6 +86,12 @@ views:
     - light.toilet_light
     - entity: switch.bathroom_light_relay_switch_right
       name: Bathroom
+
+  - type: entities
+    title: Balcony
+    entities:
+    - sensor.0x00124b001f877829_humidity
+    - sensor.0x00124b001f877829_temperature
 
   - type: entities
     title: Wall switches
@@ -104,44 +123,60 @@ views:
     - entity: switch.kitchen_camera_switch
       name: Camera kitchen
 
-- title: Vacuum
+- icon: 'mdi:robot-vacuum'
   panel: false
   cards:
-  - type: entities
-    title: Scripts
-    show_header_toggle: false
-    entities:
-    - script.vacuum_go_to_clean
-    - script.vacuum_tv_zone
-    - script.vacuum_bed_zone
-    - script.vacuum_kitchen_zone
-    - script.vacuum_quoridor_zone
-  - type: custom:vertical-stack-in-card
-    cards:
-    - type: entities
-      show_header_toggle: false
-      entities:
-      - vacuum.rockrobo
-    - type: 'custom:valetudo-map-card'
-      entity: sensor.xiaomi_map
-      rotate: 0
-      #crop:
-      #  top: 78
-      #  bottom: 50
-      #  left: 100
-      #  right: 0
-      vacuum_entity: vacuum.rockrobo
-      map_scale: 2
-      title:
+  - type: 'custom:vacuum-card'
+    entity: vacuum.rockrobo
+    map: camera.rockrobo_map
+    show_status: false
+    show_name: false
+    stats:
+      default:
+      - attribute: filter
+        unit: hours
+        subtitle: Filter
+      - attribute: sideBrush
+        unit: hours
+        subtitle: Side brush
+      - attribute: mainBrush
+        unit: hours
+        subtitle: Main brush
+      - attribute: sensor
+        unit: hours
+        subtitle: Sensors
+      cleaning:
+      - attribute: currentCleanArea
+        unit: m2
+        subtitle: Cleaning area
+      - attribute: currentCleanTime
+        unit: minutes
+        subtitle: Cleaning time
+    actions:
+    - service: script.vacuum_go_to_clean
+      icon: "mdi:broom"
+      name: Go to clean spot
+    - service: script.vacuum_tv_zone
+      icon: "mdi:television-classic"
+      name: Clean TV zone
+    - service: script.vacuum_bed_zone
+      icon: "mdi:bed-empty"
+      name: Clean bed zone
+    - service: script.vacuum_kitchen_zone
+      icon: "mdi:fridge-outline"
+      name: Clean kitchen
+    - service: script.vacuum_quoridor_zone
+      icon: "mdi:door"
+      name: Clean quoridor
 
+- icon: 'mdi:script-text'
 
-- title: Scripts and scenes
   cards:
   - type: entities
     title: Scanner
     entities:
     - script.run_scan
-  cards:
+
   - type: entities
     title: Common scripts
     entities:

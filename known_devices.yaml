@@ -660,3 +660,31 @@ b6_a7_e0_78_c7_e2:
   name: b6_a7_e0_78_c7_e2
   picture:
   track: true
+
+f0_18_98_c1_33_ea:
+  icon:
+  mac: F0:18:98:C1:33:EA
+  name: f0_18_98_c1_33_ea
+  picture:
+  track: true
+
+7a_b9_a7_df_3e_b4:
+  icon:
+  mac: 7A:B9:A7:DF:3E:B4
+  name: 7a_b9_a7_df_3e_b4
+  picture:
+  track: true
+
+dc_1b_a1_75_76_e6:
+  icon:
+  mac: DC:1B:A1:75:76:E6
+  name: dc_1b_a1_75_76_e6
+  picture:
+  track: true
+
+f6_41_85_18_54_b5:
+  icon:
+  mac: F6:41:85:18:54:B5
+  name: f6_41_85_18_54_b5
+  picture:
+  track: true

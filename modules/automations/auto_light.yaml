@@ -1,0 +1,89 @@
+- alias: Update room light at key hour
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  - platform: state
+    entity_id: light.room_light
+    to: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.room_light'
+
+- alias: "Update bed light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  - platform: state
+    entity_id: light.bed_light
+    to: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.bed_light'
+
+- alias: "Update kitchen light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  - platform: state
+    entity_id: light.kitchen_light
+    to: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.kitchen_light'
+
+- alias: "Update front door light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  - platform: state
+    entity_id: light.front_door_light
+    to: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.front_door_light'
+
+- alias: "Update toilet light at key hour"
+  trigger:
+  - platform: time
+    at: '01:01:00'
+  - platform: time
+    at: '06:01:00'
+  - platform: time
+    at: '22:01:00'
+  - platform: state
+    entity_id: light.toilet_light
+    to: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.update_light_brightness_by_time
+    data:
+      variables:
+        target: 'light.toilet_light'
